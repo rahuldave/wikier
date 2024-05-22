@@ -32,12 +32,20 @@ python = "3.10.*"
 [tool.pixi.feature.py311.dependencies]
 python = "3.11.*"
 
+[tool.pixi.feature.test.dependencies]
+pytest = ">=7.2.0,<8.3"
+
+[tool.pixi.feature.test.tasks]
+test = "pytest"
+
 [tool.pixi.environments]
 # implicit: default = ["default"] Here default encironment has default task
 default = { solve-group = "default" }
 build = { features = ["build"], solve-group = "default" }
-# test = ['test'] # default + test
+test = ['test']                                                       # default + test
 py310 = { features = ['py310'], solve-group = "py310" }
+py310test = { features = ['py310', 'test'], solve-group = "py310" }
 py310build = { features = ['py310', 'build'], solve-group = "py310" }
 py311 = { features = ['py311'], solve-group = "py311" }
+py311test = { features = ['py311', 'test'], solve-group = "py311" }
 py311build = { features = ['py311', 'build'], solve-group = "py311" }
